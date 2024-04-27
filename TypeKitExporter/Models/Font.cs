@@ -2,12 +2,14 @@
 
 namespace TypeKitExporter.Models;
 
-public struct Font
+public class Font
 {
     [XmlElement(ElementName = "url")]
-    public string Url { get; set; }
+    public string Url { get; set; } = string.Empty;
+
     [XmlElement(ElementName = "id")]
     public int Id { get; set; }
+
     [XmlElement(ElementName = "properties")]
-    public FontProperties Properties { get; set; }
+    public FontProperties Properties { get; set; } = new();
 }

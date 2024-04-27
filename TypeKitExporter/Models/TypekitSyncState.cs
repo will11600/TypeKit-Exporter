@@ -2,12 +2,13 @@
 
 namespace TypeKitExporter.Models;
 
-public struct TypekitSyncState
+[XmlRoot(ElementName = "typekitSyncState")]
+public class TypekitSyncState
 {
     [XmlElement(ElementName = "state")]
-    public string State { get; set; }
+    public string State { get; set; } = string.Empty;
 
     [XmlArray("fonts")]
     [XmlArrayItem("font")]
-    public List<Font> Fonts { get; set; }
+    public List<Font> Fonts { get; set; } = [];
 }

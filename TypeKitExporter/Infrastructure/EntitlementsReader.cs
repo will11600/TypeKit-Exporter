@@ -30,7 +30,7 @@ internal sealed class EntitlementsReader
     public IEnumerable<Font> GetFonts()
     {
         using TextReader reader = new StringReader(_xmlData);
-        var result = (TypekitSyncState)_serializer.Deserialize(reader)!;
+        var result = _serializer.Deserialize(reader) as TypekitSyncState ?? throw new InvalidOperationException("Could not deserialize the entitlements file.");
         return result.Fonts;
     }
 
@@ -41,7 +41,7 @@ internal sealed class EntitlementsReader
     /// <returns>A font.</returns>
     public Font GetFont(string fontName)
     {
-        return GetFonts().FirstOrDefault(f => f.Properties.FullName == fontName);
+        return GetFonts().FirstOrDefault(f => f.Properties.FullName == fontName) ?? throw new InvalidOperationException("Font not found.");
     }
 
     /// <summary>
@@ -51,7 +51,7 @@ internal sealed class EntitlementsReader
     /// <returns>A font.</returns>
     public Font GetFont(int id)
     {
-        return GetFonts().FirstOrDefault(f => f.Id == id);
+        return GetFonts().FirstOrDefault(f => f.Id == id) ?? throw new InvalidOperationException("Font not found.");
     }
 
     /// <summary>
