@@ -23,6 +23,10 @@ internal sealed class EntitlementsReader
         _serializer = new(typeof(TypekitSyncState));
     }
 
+    /// <summary>
+    /// Gets the fonts from the entitlements file.
+    /// </summary>
+    /// <returns>An enumerable of fonts.</returns>
     public IEnumerable<Font> GetFonts()
     {
         using TextReader reader = new StringReader(_xmlData);
@@ -30,16 +34,31 @@ internal sealed class EntitlementsReader
         return result.Fonts;
     }
 
+    /// <summary>
+    /// Gets a font by its name.
+    /// </summary>
+    /// <param name="fontName">The name of the font.</param>
+    /// <returns>A font.</returns>
     public Font GetFont(string fontName)
     {
         return GetFonts().FirstOrDefault(f => f.Properties.FullName == fontName);
     }
 
+    /// <summary>
+    /// Gets a font by its ID.
+    /// </summary>
+    /// <param name="id">The ID of the font.</param>
+    /// <returns>A font.</returns>
     public Font GetFont(int id)
     {
         return GetFonts().FirstOrDefault(f => f.Id == id);
     }
 
+    /// <summary>
+    /// Gets all fonts from a family.
+    /// </summary>
+    /// <param name="familyName">The name of the family.</param>
+    /// <returns>An enumerable of fonts.</returns>
     public IEnumerable<Font> GetFamily(string familyName)
     {
         return GetFonts().Where(f => f.Properties.FamilyName == familyName);

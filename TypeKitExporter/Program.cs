@@ -32,6 +32,10 @@ namespace TypeKitExporter
                         .WithDescription("Export a family of fonts")
                         .WithExample(["export", "family", "Myriad Pro"]);
                 });
+
+                config.AddCommand<ListFontsCommand>("list")
+                    .WithDescription("List all installed fonts")
+                    .WithExample(["list"]);
             });
 
             return app.Run(args);

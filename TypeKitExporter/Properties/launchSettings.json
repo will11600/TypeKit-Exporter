@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "TypeKitExporter": {
+      "commandName": "Project",
+      "commandLineArgs": "list"
+    }
+  }
+}
